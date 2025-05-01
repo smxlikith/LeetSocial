@@ -9,9 +9,9 @@ async function Validator(cookie) {
         'Cookie': decodeURIComponent(cookie.replace(/\r?\n|\r/g, '')),
     }
     try {
-        // const response = await axios.get("https://leetcode.com/api/submissions/?offset=0&limit=20&lastkey=", {
-        //     headers: headers,
-        // })
+        const response = await axios.get("https://leetcode.com/api/submissions/?offset=0&limit=20&lastkey=", {
+            headers: headers,
+        })
         let leet = cookie.split(";").map((c) => c.trim()).find((el) => el.startsWith("LEETCODE_SESSION="));
         if (leet) {
             let leetToken = leet.split("=")[1];
