@@ -100,6 +100,14 @@ async function updateContest(req, res) {
             return res.status(404).json({ message: 'Contest not found' });
         }
 
+        if (contest.status === 'ended') {
+            return res.status(400).json({ message: 'Contest has already ended' });
+        }
+
+        if (contest.status === 'Ongoing') {
+            return res.status(400).json({ message: 'Contest has already started.' });
+        }
+
         if (contest.creator.toString() !== req.user.userId) {
             return res.status(403).json({ message: 'Not authorized to update this contest' });
         }
